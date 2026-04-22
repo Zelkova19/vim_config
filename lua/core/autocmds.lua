@@ -1,0 +1,21 @@
+local group = vim.api.nvim_create_augroup("core_autocmds", { clear = true })
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+  group = group,
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
+
+vim.api.nvim_create_autocmd("TermOpen", {
+  group = group,
+  callback = function(args)
+    local opts = { buffer = args.buf }
+    vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], opts)
+    vim.keymap.set("t", "jj", [[<C-\><C-n>]], opts)
+    vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
+    vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
+    vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
+    vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
+  end,
+})

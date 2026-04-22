@@ -1,0 +1,29 @@
+
+cal map = vim.keymap.set
+
+map("i", "jj", "<Esc>", { desc = "Exit insert mode" })
+
+map("n", "<leader>w", "<cmd>w<cr>", { desc = "Save file" })
+map("n", "<leader>q", "<cmd>q<cr>", { desc = "Quit window" })
+
+map("n", "<leader>e", "<cmd>Neotree left toggle reveal<cr>", { desc = "Explorer" })
+
+map("n", "<C-h>", "<cmd>wincmd h<cr>", { desc = "Go left" })
+map("n", "<C-j>", "<cmd>wincmd j<cr>", { desc = "Go down" })
+map("n", "<C-k>", "<cmd>wincmd k<cr>", { desc = "Go up" })
+map("n", "<C-l>", "<cmd>wincmd l<cr>", { desc = "Go right" })
+
+map("n", "|", "<cmd>vsplit<cr>", { desc = "Vertical split" })
+map("n", "\\", "<cmd>split<cr>", { desc = "Horizontal split" })
+
+map("n", "<Tab>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer" })
+map("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer" })
+map("n", "<leader>x", "<cmd>BufferLinePickClose<cr>", { desc = "Close picked buffer" })
+map("n", "<leader>X", "<cmd>BufferLineCloseOther<cr>", { desc = "Close other buffers" })
+
+map("n", "<leader>go", function()
+	  local url = vim.fn.expand("<cfile>")
+	    if url ~= "" then
+		        vim.fn.jobstart({ "xdg-open", url }, { detach = true })
+			  end
+		  end, { desc = "Open URL under cursor" })
